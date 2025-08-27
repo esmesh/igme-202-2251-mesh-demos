@@ -1,0 +1,21 @@
+# 202 Work Repo
+
+- IGME 202 - 2251
+- Unity Version - [6.0 (6000.0.53)LTS](https://unity.com/releases/editor/whats-new/6000.0.53)
+- Do NOT create any new Unity projects!
+    - All exercises & projects will be created as new scenes in the appropriate existing 2D or 3D project.
+- Player Settings
+  - Resolution and Presentation
+    - WebGL Template = `Default`
+  - Publishing Settings
+    - Compression Format = `Disabled`
+- Build Settings
+   - Platform = `WebGL`
+   - Scenes In Build
+     - Only have the scene for the assignment you are building
+     - e.g. For Exercise 01, `Scenes/Exercise01`
+     - Click `Add Open Scenes` button
+     - Make sure checkbox is checked
+- Builds go into a designated folder in `/builds/`
+  - Folders found [here](/builds/)
+  - Example Demo's build goes into `/builds/demo/`
