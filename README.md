@@ -1,4 +1,4 @@
-# 202 Work Repo
+# Prof. Mesh's In-Class Demos - Fall 2025
 
 - IGME 202 - 2251
 - Unity Version - [6.0 (6000.0.53)LTS](https://unity.com/releases/editor/whats-new/6000.0.53)
