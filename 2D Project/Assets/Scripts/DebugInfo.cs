@@ -5,6 +5,8 @@ public class DebugInfo : MonoBehaviour
     [SerializeField]
     private int num = 42;
 
+    private int secret = 121;
+
     // Start is called once before the first execution of
     // Update after the MonoBehaviour is created
     void Start()
@@ -15,5 +17,10 @@ public class DebugInfo : MonoBehaviour
     void Update()
     {
         Debug.Log("HELLO! "+num);
+
+        if(num > 100)
+        {
+            Debug.Log("stop");
+        }
     }
 }
