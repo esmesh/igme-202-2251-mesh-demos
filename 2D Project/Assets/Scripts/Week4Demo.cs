@@ -45,4 +45,17 @@ public class Week4Demo : MonoBehaviour
         scale.x = 0.6f * 1.0f;
         deltaStep.transform.localScale = scale;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        //Gizmos.DrawWireCube(new Vector3(1, 0, 0), new Vector3(1, 1, 1));
+        Gizmos.DrawLine(frameObj.transform.position, new Vector2(
+            frameObj.transform.position.x + 0.01f * targetFrameRate,
+            frameObj.transform.position.y));
+
+        Gizmos.DrawLine(deltaObj.transform.position, new Vector2(
+            deltaObj.transform.position.x + 0.6f,
+            deltaObj.transform.position.y));
+    }
 }
