@@ -6,11 +6,14 @@ public abstract class Agent : MonoBehaviour
     // Making these serilaized only for debug purposes. Should generally NOT
     // be accessible outside this component!
 
+    [SerializeField] 
+    protected bool randomInitialHeading = false;
+
     [SerializeField]
     Vector3 position = Vector3.zero; // distance
 
     [SerializeField]
-    Vector3 velocity = Vector3.zero; // distance/second
+    public Vector3 Velocity { get; private set; } // distance/second
 
     [SerializeField]
     Vector3 acceleration = Vector3.zero; // velocity/second --> distance/second^2
@@ -25,6 +28,10 @@ public abstract class Agent : MonoBehaviour
     void Start()
     {
         position = transform.position;
+        if (randomInitialHeading)
+        {
+            Velocity = Random.insideUnitCircle.normalized * maxSpeed;
+        }
     }
 
     // Update is called once per frame
@@ -40,11 +47,11 @@ public abstract class Agent : MonoBehaviour
         acceleration = CalcSteeringForces();
 
         // Update velocity
-        velocity += acceleration * Time.deltaTime;
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        Velocity += acceleration * Time.deltaTime;
+        Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
 
         // Update position
-        position += velocity * Time.deltaTime;
+        position += Velocity * Time.deltaTime;
         transform.position = position;
     }
 
@@ -68,7 +75,7 @@ public abstract class Agent : MonoBehaviour
         desiredVelocity = opt1;
 
         // Calc seeking force
-        Vector3 seekForce = desiredVelocity - velocity;
+        Vector3 seekForce = desiredVelocity - Velocity;
         seekForce.z = 0;
 
         // return final force
@@ -92,7 +99,7 @@ public abstract class Agent : MonoBehaviour
         }
 
         // Calc seeking force
-        Vector3 arriveForce = desiredVelocity - velocity;
+        Vector3 arriveForce = desiredVelocity - Velocity;
         arriveForce.z = 0;
 
         // return final force
@@ -111,7 +118,7 @@ public abstract class Agent : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(position, position + velocity);
+        Gizmos.DrawLine(position, position + Velocity);
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(position, position + acceleration);
