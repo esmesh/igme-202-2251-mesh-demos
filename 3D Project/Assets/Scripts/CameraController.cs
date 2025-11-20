@@ -1,4 +1,5 @@
 using Unity.Hierarchy;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,9 +28,9 @@ public class CameraController : MonoBehaviour
         // if we've turned left or right
         if (lookInput.x != 0f)
         {
-            // use that to rotate the entire player object
-            transform.Rotate(0f, lookInput.x * lookSensitivity.x * Time.deltaTime, 0f);
-            //transform.Rotate(0f, lookInput.x, 0f);
+            //  Turn left/right
+            transform.rotation = transform.rotation * 
+                Quaternion.Euler(0f, lookInput.x * lookSensitivity.x, 0f);
         }
 
         // if we've turned up or down
@@ -38,8 +39,9 @@ public class CameraController : MonoBehaviour
             // invert the y axis if needed
             lookInput.y *= upDownInversion ? 1f : -1f;
 
-            // Find the new camera rotation
-            Quaternion newLook = playerCam.transform.rotation * Quaternion.Euler(lookInput.y * lookSensitivity.y * Time.deltaTime, 0f, 0f);
+            //  Look up/down
+            Quaternion newLook = playerCam.transform.rotation 
+                * Quaternion.Euler(lookInput.y * lookSensitivity.y, 0f, 0f);
 
             // See if it's gone too far
 
